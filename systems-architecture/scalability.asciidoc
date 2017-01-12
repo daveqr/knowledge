@@ -6,3 +6,16 @@
 ** amount of traffic (usage per second)
 ** amount of data
 * will want to know per/second usage (though it's sometimes easier to think about per month)
+
+[source,python]
+---------------------------------------------------------------------
+''' A multi-line
+    comment.'''
+def sub_word(mo):
+    ''' Single line comment.'''
+    word = mo.group('word')     # Inline comment
+    if word in keywords[language]:
+        return quote + word + quote
+    else:
+        return word
+---------------------------------------------------------------------
