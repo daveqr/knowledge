@@ -127,7 +127,9 @@
         - software => ELB, HAProxy, LVS
         - hardware => Barracuda, F5
 
-![Load Balancing](./load-balancing.png)
+> *Load balancing*
+>
+> ![Load balancing](./load-balancing.png "Load balancing")
 
 * database replication
   * there is one main read/write database, which is called master
