@@ -142,19 +142,19 @@
       * complicated topology
 
 > *Master-master*
-
+>
 > ![master-master](./db-master-master.png "Master-master")
 
 <br />
 
 > *Single Master*
-
+>
 > ![single master](./db-replication.png "Single master")
         
 <br />
 
 > *Complicated topology*
-
+>
 > ![complicated](./db-complicated.png "Complicated topology")
 
 - database sharding
@@ -181,7 +181,7 @@
         - not well supported by common tools (roll-your-own)
         
 > *Partitioning*
-> 
+>
 > ![partitioning](./db-partitioning.png "Partitioning")
 
 - asynchronous processing
@@ -206,5 +206,6 @@
     - load-balancing
     - centralized authentication
         
-![reverse proxy](./reverse-proxy-arch.png "Reverse proxy")
-*Reverse proxy*
+> *Reverse proxy*
+> 
+> ![reverse proxy](./reverse-proxy-arch.png "Reverse proxy")
