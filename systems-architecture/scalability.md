@@ -231,7 +231,7 @@
 * server itself does not generate or host data
 * content is obtained by backed servers, which have no direct connection to the external network
 
-#### Why?
+### Why?
 * security
 * high-availability
 * load-balancing
