@@ -28,7 +28,9 @@
 ### Vertical scaling
 
 #### CPU
-  * cores, L2 cache
+  * cores, cache built into CPU
+  * L1 -> L2 -> L3 ->L4 cache
+  * L1 is smallest but fastest cache
   * each core is like a “brain"
   * on single-core CPUs the operating system schedules which apps have access to resources => serial
   * on multi-core servers, the computer can do more than one thing at a time (not just appear to) => parallel processing
