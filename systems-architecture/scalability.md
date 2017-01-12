@@ -6,3 +6,5 @@
  * amount of traffic (usage per second)
  * amount of data
 * will want to know per/second usage (though it's sometimes easier to think about per month)
+
+![GitHub Logo](./imgres.jpg)
