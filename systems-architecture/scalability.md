@@ -151,9 +151,11 @@
 
 > ![single master](./db-replication.png "Single master")
         
-*Complicated topology*
+<br />
 
-![complicated](./db-complicated.png "Complicated topology")
+> *Complicated topology*
+
+> ![complicated](./db-complicated.png "Complicated topology")
 
 - database sharding
     - split servers
@@ -179,8 +181,8 @@
         - not well supported by common tools (roll-your-own)
         
 
-![partitioning](./db-partitioning.png "Partitioning")
-*Partitioning*
+> ![partitioning](./db-partitioning.png "Partitioning")
+> *Partitioning*
 
 - asynchronous processing
     - have a queue of tasks or jobs that a worker can process
