@@ -45,15 +45,14 @@
 * Add storage
 * SAS drive
   * fastest mechanical drive
-    * where you touch disk you want a SAS drive
-    * often databases will be on SAS drives
+  * where you touch disk you want a SAS drive
+  * often databases will be on SAS drives
 * SATA drive
   * serial ATA
 * SAD
-    * solid state drive
-    * faster than mechanical drive
-    * more expensive but smaller than mechanical drives
-* use RAID drives
+  * solid state drive
+  * faster than mechanical drive
+  * more expensive but smaller than mechanical drives
     
 ##### RAID
   * redundant array of independent disks
@@ -99,18 +98,21 @@
   * persistent cache like Redis (will have better performance than db)
 
 ### Caching
-* file-based caching
+#### File-based caching
   * pre-rendered html from dynamic content
   * often done on a regular basis such as by a script which runs every hour by cron
   * performance improvement for serving static content
   * good when reads more common than writes
   * redundancy with duplicated code
   * non-trivial to change the look
-* database caching
+
+#### Database caching
   * sql queries
   * slower than in-memory caching
-* in-memory caches <— recommended
-  * examples: Memcached or Redis
+
+#### In-memory caches
+  * recommended
+  * example caching systems: Memcached, Redis
   * software you run on a server
   * key-value store in RAM
   * should reside as buffering layer between app and data storage
@@ -121,17 +123,17 @@
       * see data as an object like you already do in code
       * assemble a dataset from db and store the instance of the class in cache
       * eg Product
-            * assemble the Product instance
-            * store the instance in cache
-        * when something changes, get rid of the cached object
-        * allows asynchronous processing
-            * army of worker servers assembling objects and putting into cache
-            * app just consumes the latest cached object and almost never touches the db
-        * examples of cacheable objects
-            * user sessions (never use the db)
-            * fully rendered blog articles
-            * activity streams
-            * user <-> friend relationships
+          * assemble the Product instance
+          * store the instance in cache
+          * when something changes, get rid of the cached object
+      * allows asynchronous processing
+          * army of worker servers assembling objects and putting into cache
+      * app just consumes the latest cached object and almost never touches the db
+      * examples of cacheable objects
+          * user sessions (never use the db)
+          * fully rendered blog articles
+          * activity streams
+          * user <--> friend relationships
 
 ### Load balancing
 
