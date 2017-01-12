@@ -129,7 +129,7 @@
 
 > *Load balancing*
 >
-> ![Load balancing](./load-balancing.png "Load balancing")
+> ![Load balancing](./images/load-balancing.png "Load balancing")
 
 * database replication
   * there is one main read/write database, which is called master
@@ -145,19 +145,19 @@
 
 > *Master-master*
 >
-> ![master-master](./db-master-master.png "Master-master")
+> ![master-master](./images/db-master-master.png "Master-master")
 
 <br />
 
 > *Single Master*
 >
-> ![single master](./db-replication.png "Single master")
+> ![single master](./images/db-replication.png "Single master")
         
 <br />
 
 > *Complicated topology*
 >
-> ![complicated](./db-complicated.png "Complicated topology")
+> ![complicated](./images/db-complicated.png "Complicated topology")
 
 - database sharding
     - split servers
@@ -184,7 +184,7 @@
         
 > *Partitioning*
 >
-> ![partitioning](./db-partitioning.png "Partitioning")
+> ![partitioning](./images/db-partitioning.png "Partitioning")
 
 - asynchronous processing
     - have a queue of tasks or jobs that a worker can process
@@ -210,4 +210,4 @@
         
 > *Reverse proxy*
 > 
-> ![reverse proxy](./reverse-proxy-arch.png "Reverse proxy")
+> ![reverse proxy](./images/reverse-proxy-arch.png "Reverse proxy")
