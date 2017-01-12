@@ -180,9 +180,8 @@
         - not has much expertise in the industry because it’s not as common
         - not well supported by common tools (roll-your-own)
         
-
-> ![partitioning](./db-partitioning.png "Partitioning")
 > *Partitioning*
+> ![partitioning](./db-partitioning.png "Partitioning")
 
 - asynchronous processing
     - have a queue of tasks or jobs that a worker can process
