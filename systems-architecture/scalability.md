@@ -152,7 +152,8 @@
 *Complicated topology*
 
 ![complicated](./db-complicated.png "Complicated topology")
-<br/>*Complicated topology*
+
+*Complicated topology*
 
 - database sharding
     - split servers
