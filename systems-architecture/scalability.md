@@ -141,19 +141,19 @@
       * master-master
       * complicated topology
 
-![master-master](./db-master-master.png "Master-master")
-*Master-master*
+> *Master-master*
 
-**Single Master**
+> ![master-master](./db-master-master.png "Master-master")
 
-![single master](./db-replication.png "Single master")
-*Single master*
+<br />
+
+> *Single Master*
+
+> ![single master](./db-replication.png "Single master")
         
 *Complicated topology*
 
 ![complicated](./db-complicated.png "Complicated topology")
-
-*Complicated topology*
 
 - database sharding
     - split servers
