@@ -144,9 +144,13 @@
 ![master-master](./db-master-master.png "Master-master")
 *Master-master*
 
+**Single Master**
+
 ![single master](./db-replication.png "Single master")
 *Single master*
         
+*Complicated topology*
+
 ![complicated](./db-complicated.png "Complicated topology")
 *Complicated topology*
 
