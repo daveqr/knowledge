@@ -181,6 +181,7 @@
         - not well supported by common tools (roll-your-own)
         
 > *Partitioning*
+> 
 > ![partitioning](./db-partitioning.png "Partitioning")
 
 - asynchronous processing
