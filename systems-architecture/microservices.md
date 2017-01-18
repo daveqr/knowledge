@@ -13,3 +13,4 @@
 * http://dbeck.github.io/5-lessons-learnt-from-choosing-zeromq-and-protobuf/
 
 Thank you very much for the feedback! I wonder how good Elixir protobuf support is. If I would start a new project I would really compare protobuf to others before investing a lot into it. My shortlist would start with flatbuffers and cap'n'proto.
+
