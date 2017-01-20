@@ -123,3 +123,10 @@
 * A Bend in the River by V. S. Naipaul</span> &mdash; December 2001<br/>
 	</p>
 	</li>
+	
+
+## 2017
+
+### January
+* The End of the Beginning: Life, Society and Economy on the Brink of the Singularity by Ben Goertzel (Editor)
+* Homo Deus: A Brief History of Tomorrow  by Yuval Noah Harari
