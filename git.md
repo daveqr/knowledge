@@ -156,3 +156,51 @@ $ git commit —amend
 ```
 $ git rebase -i HEAD~2
 ```
+
+
+
+
+xxxxxx
+
+git commit --amend: This command allows you to modify the most recent commit message or add changes to the most recent commit.
+
+git rebase: This command can be used to change the commit history of a branch by reapplying commits onto a new base. It is often used to remove or squash commits, reorder commits, or combine multiple commits into a single commit.
+
+git reset: This command allows you to move the HEAD pointer to a previous commit, effectively undoing changes made after that commit. This can be done with the --soft, --mixed, or --hard flags, which control how much of the changes are undone.
+
+git filter-branch: This command allows you to rewrite the history of a repository by applying a filter to each commit. This can be used to remove sensitive data, change author information, or split a repository into multiple repositories.
+
+
+
+xxxx
+
+Git's rerere (reuse recorded resolution) feature allows Git to remember how you resolved conflicts in the past and use that resolution automatically in the future when it encounters a similar conflict. This can save you time and effort by avoiding the need to manually resolve the same conflicts multiple times.
+
+Here's how Git rerere works:
+
+When Git encounters a conflict during a merge or rebase operation, it saves the conflict resolution in a special directory called ".git/rr-cache". The saved resolution includes the contents of the conflicted files as well as the resolutions you made to resolve the conflict.
+
+If Git encounters a similar conflict in the future, it checks the ".git/rr-cache" directory to see if there is a saved resolution for that conflict. If there is, Git applies the saved resolution automatically without prompting you to resolve the conflict again.
+
+You can manually edit or delete saved resolutions in the ".git/rr-cache" directory if needed.
+
+Git rerere is a powerful feature that can save you time and effort when dealing with conflicts. However, it's important to be aware of the potential pitfalls of rerere, such as accidentally applying a previous resolution to a new conflict that requires a different resolution. Therefore, it's important to use rerere judiciously and with care.
+
+
+xxxx
+git clean: This command removes untracked files from your working directory. It can be useful if you have a lot of generated files that you don't want to commit.
+
+
+
+
+
+git stash: This command allows you to temporarily save changes that you have made to your working directory without committing them.
+
+git blame: This command shows you who last modified each line of a file, making it useful for tracking down the source of bugs or issues.
+
+git bisect: This command allows you to perform a binary search through the history of your Git repository to find a specific commit that introduced a bug or regression.
+
+xxxx
+git instaweb
+install lighttpd
+ps -ax | grep lighttpd
