@@ -192,8 +192,10 @@ git clean: This command removes untracked files from your working directory. It 
 
 
 
+xxxxx
+git commit --amend -m "New commit message"
 
-
+xxxxx
 git stash: This command allows you to temporarily save changes that you have made to your working directory without committing them.
 
 git blame: This command shows you who last modified each line of a file, making it useful for tracking down the source of bugs or issues.
