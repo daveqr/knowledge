@@ -1,11 +1,15 @@
-# Creating a Django App
+# Django
+
+## Project Setup
+
+### Creating an App
 
 In Django, an "app" (short for "application") is a self-contained module or component of a web application that encapsulates specific functionality. Apps are Django's way of organizing code within a project, and they are designed to be reusable and pluggable.
 
 Here's a step-by-step guide to creating a Django app:
 
 
-2. **Create the App**
+1. **Create the App**
 
     To create a new app, use the following command, replacing `<app_name>` with your desired app name:
 
@@ -19,7 +23,7 @@ Here's a step-by-step guide to creating a Django app:
     python manage.py startapp myapp
     ```
 
-3. **Implement the View (views.py)**
+2. **Implement the View (views.py)**
 
     In your app's `views.py` file, you'll define the views that handle HTTP requests and return responses. Implement the necessary view functions and logic here.
 
@@ -33,7 +37,7 @@ Here's a step-by-step guide to creating a Django app:
         return HttpResponse("Hello, World!")
     ```
 
-4. **Configure URLs (urls.py)**
+3. **Configure URLs (urls.py)**
 
     Create a `urls.py` file within your app to define the URL patterns for your views. Map URLs to the corresponding view functions.
 
@@ -48,7 +52,7 @@ Here's a step-by-step guide to creating a Django app:
     ]
     ```
 
-5. **Add the App to `INSTALLED_APPS` (settings.py)**
+4. **Add the App to `INSTALLED_APPS` (settings.py)**
 
     Open your project's `settings.py` file and add your app to the `INSTALLED_APPS` list. This tells Django to include your app in the project.
 
@@ -61,7 +65,7 @@ Here's a step-by-step guide to creating a Django app:
     ]
     ```
 
-6. **Run Migrations**
+5. **Run Migrations**
 
     Migrations are used to apply changes to your database schema. Run the following commands to create and apply migrations:
 
