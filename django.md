@@ -77,3 +77,22 @@ Here's a step-by-step guide to creating a Django app:
 That's it! You've successfully created a Django app and integrated it into your project.
 
 For more information on Django app development, refer to the [Django documentation](https://docs.djangoproject.com/en/stable/topics/apps/).
+
+## Reset Migrations by Dropping the Database
+
+In certain situations, you may need to reset your database migrations to their initial state. This process involves dropping the existing database and recreating it from scratch.
+
+
+1. Remove the SQLite3 database file. (If using MySQL or PostgreSQL, manually delete the database and create the DB again.)
+
+	```bash
+	$ rm -rf db.sqlite3
+	```
+
+2. Create the initial migrations and generate the database schema:
+
+	```bash
+	$ python manage.py makemigrations
+	$ python manage.py migrate
+	```
+
