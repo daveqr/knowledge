@@ -25,7 +25,7 @@ When a user interacts with a web form or makes a request, the CSRF token is incl
 	* Associate the token with the user session.
 1. Include the token in forms and requests
 	* For any sensitive action (e.g. changing password, making a financial transaction) include the token in the form as a hidden input field
-	* Alternatively, include the token as a custom HTTP header
+	* Alternatively, include the token as a custom HTTP header. For example, Django, uses the *X-CSRFToken* header.
 	* Ensure the token is only accesible within the user's sessions
 2. Validate the token
 	* When a form is submitted or a request made, the server validates the token by comparing the token sent to the one in the user's session.
