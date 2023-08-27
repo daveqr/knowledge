@@ -16,7 +16,8 @@
 | Refactor/Rename      | Shift + F6                |
 | Navigate to Class    | Cmd + N                   |
 | Navigate to File     | Shift + Cmd + N           |
-| Navigate to File     | Ctrl + Shift + F10           |
+| Run test    | Ctrl + Shift + F10           |
+| Debug test| Ctrl + Shift + F9           |
 | Find Method by Name. | Cmd + F12           |
 | Duplicate selected line to line above. | Cmd + D     |
 | Hide method implementations. | Shift + Cmd  + -     |
