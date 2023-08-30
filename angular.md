@@ -13,6 +13,12 @@
 	```
 	$ ng generate component <module-name>/<component>
 	```
+	
+* Generate a service
+
+	```
+	$ ng generate service services/<service>
+	```	
 
 ## Routing Config
 
