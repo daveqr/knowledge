@@ -104,3 +104,8 @@ Content-Type: application/hal+json
   }
 }
 ```
+
+#### Specification
+
+
+[JSON Hypertext Application Language](https://tools.ietf.org/html/draft-kelly-json-hal-08)
