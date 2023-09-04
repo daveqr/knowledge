@@ -19,6 +19,6 @@
 | Run test    | Ctrl + Shift + F10           |
 | Debug test| Ctrl + Shift + F9           |
 | Find Method by Name. | Cmd + F12           |
-| Duplicate selected line to line above. | Cmd + D     |
+| Duplicate selected line. | Cmd + D     |
 | Hide method implementations. | Shift + Cmd  + -     |
 | Show method implementations. | Shift + Cmd  + +     |
