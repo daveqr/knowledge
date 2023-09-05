@@ -26,7 +26,7 @@ Stream<Integer> numbers = Stream.of(1, 2, 3, 4, 5);
 Stream<Integer> evenNumbersStream = numbers.filter(n -> n % 2 == 0);
 ```
 
-Create a pipelin by chaining intermediate operations:
+Create a pipeline by chaining intermediate operations:
 
 ```
 List<String> result = people.stream()
@@ -61,6 +61,18 @@ long count = people.stream()
 	```
 	String joinedNames = stream.collect(Collectors.joining(", "));
 	```
+	
+	Using str.lines():
+	
+	```
+    public static String indentString(String str, int n) {
+        final String spaces = " ".repeat(n);
+
+        return str.lines()
+                .map(s -> spaces + s)
+                .collect(Collectors.joining("\n", "", "\n"));
+    }
+    ```
 	
 * **toMap()**: converts elements of a stream into a Map. You specify how to extract keys and values from the elements:
 
