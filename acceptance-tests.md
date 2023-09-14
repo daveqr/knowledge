@@ -4,8 +4,18 @@
 
 [Github example](https://github.com/davef77/acceptance-testing/tree/master)
 
+* Define the behaviour that we want from our system
+* Act as an executable specification that guides development and verifies that the system meeets the specification
+* Meant to test general behaviour of the system, not every single input. Avoid overtesting in BDD scenarios.
+* Work best in combination with other forms of automated testing. Test tiny differences in unit tests.
 
-## Four layers of acceptance tests
+How do you know if you have your specifications right? Ask yourself, can you imagine your spec working as an example in the documentation of your system?
+
+## How to implement acceptance tests
+
+Each scenario should validate a single outcome.
+
+### Four layers of acceptance tests
 
 Test Case -> DSL -> Protocol Driver -> System Under Test
 

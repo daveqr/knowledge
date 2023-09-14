@@ -1,8 +1,18 @@
-## User Stories
+# User Stories
 
 A user story helps us achieve a clear separation between what the system does and how it does it.
 
 It is a development tool meant to establish an outside-in perspective on our system, keeping us focused on what matters and helping us avoid over-engineering.
+
+
+* Describe succinctly and simply WHAT the User wants the software to do.
+* Don’t include descriptions of HOW the software will work.
+* Come from sharing expertise and perspectives of the different roles in software development.
+* Use ‘natural’ language that a non-technical person, and the User, would understand.
+* Are deliberately high-level, not fixed in the technical implementation details
+* Capture the goal but are vague engough to allow different ways to achieve the goal.
+
+Confirm that the stories work for other solutions (eg web app vs robot app vs voice control)
 
 ## Five Common Mistakes
 
