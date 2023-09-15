@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<!--
+    INSTRUCTIONS:
+
+    Here's a small problem that a client once asked us to solve as part of a larger project.
+    The client has an existing web-based system for delivering a test containing multiple choice
+    questions to a learner (the relevant parts of which are included on this page). The client
+    asked us to modify this code so that the test questions are delivered in a random order every
+    time a learner attempts the test. Furthermore, the order in which the answers to the questions
+    are presented should also be randomized.
+
+    The existing framework for creating and displaying a test has been provided for you below. Your
+    task is to comprehend the client's code and data structure then implement the `randomizeTest`
+    function to perform the randomization of the question and answer order. Please explain your work
+    and thought process.
+
+    Some background on the project from the client that may affect your solution:
+
+    - There are over 600 of these tests deployed to hundreds of thousands of users
+    - There are never more then 20 questions or so per test, each with no more than 6 answers but the
+      code should be able to handle an arbitrary number of both questions and answers
+    - This code is maintained by several developers in different organizations
+    - The code is only required to work in all modern browsers
+
+    When submitting your response, please rename this file to include your name.
+
+    If you have any questions, please do not hesitate to ask.
+-->
+<html lang="en">
+
+<head>
+    <title>Rustici Software - Initial Developer Hiring Test</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        li.question {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        label.choice {
+            display: block;
+        }
+
+        .correct {
+            color: #336897;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Randomized Questions</h2>
+    <ul id="questions"></ul>
+
+    <script>
+        (function () {
+            /* Begin Dave Daniels implementation */
+            function randomizeTest(test) {
+                const shuffled = shuffleTest(test);
+
+                return shuffleAnswers(shuffled);
+            }
+
+            function shuffleTest(test) {
+                const q = [...test.questions];
+                const c = [...test.choices];
+                const a = [...test.answers];
+
+                const { array1, array2, array3 } = shuffle(q, c, a);
+                return { questions: array1, choices: array2, answers: array3 };
+            }
+
+            // Fisher–Yates shuffle algorithm
+            function shuffle(arrayToShuffle, optionalArray1 = [], optionalArray2 = []) {
+                let array1 = [...arrayToShuffle];
+                let array2 = [...optionalArray1];
+                let array3 = [...optionalArray2];
+
+                let currentIndex = array1.length, randomIndex;
+
+                while (currentIndex > 0) {
+                    randomIndex = Math.floor(random() * currentIndex) % currentIndex;
+                    currentIndex--;
+                    array1 = swap(array1, currentIndex, randomIndex);
+                    array2 = swap(array2, currentIndex, randomIndex);
+                    array3 = swap(array3, currentIndex, randomIndex);
+                }
+
+                return {
+                    array1,
+                    array2,
+                    array3
+                };
+            }
+
+            function shuffleAnswers(test) {
+                const tempTest = { ...test }
+
+                for (let i = 0; i < tempTest.questions.length; i++) {
+                    shuffledAnswers = shuffle(tempTest.answers[i], tempTest.choices[i]);
+                    tempTest.answers[i] = shuffledAnswers.array1;
+                    tempTest.choices[i] = shuffledAnswers.array2;
+                }
+
+                return tempTest;
+            }
+
+            // Use time to reduce predictability
+            function random() {
+                return Math.random() * (new Date().getTime());
+            }
+
+            // Helper method to swap array values in one step
+            function swap(array, currentIndex, randomIndex) {
+                // Creating a new array for immutability and a functional approach,
+                // though modifying the passed-in array would be more efficient.
+                const newArray = [...array];
+                [newArray[currentIndex], newArray[randomIndex]] = [newArray[randomIndex], newArray[currentIndex]];
+                return newArray;
+            }
+
+            // Helper method for tests
+            function assert(actual, message) {
+                if (actual) {
+                    console.log(`Assertion passed: ${message}`);
+                } else {
+                    console.error(`Assertion failed: ${message}`);
+                }
+            }
+
+            // Test runner
+            function runTestCases() {
+                shouldRandomizeQuestionsAndChoicesInTestObject();
+                console.log('All tests completed.');
+            }
+
+            // Test
+            function shouldRandomizeQuestionsAndChoicesInTestObject() {
+                const questions = [
+                    "Which animals are mammals?",
+                    "What is the capital of France?",
+                    "Which programming languages are dynamically typed?",
+                    "Who wrote 'The Great Gatsby'?",
+                    "Which colors are in a rainbow?"
+                ];
+
+                const choices = [
+                    [
+                        "Lion",
+                        "Eagle",
+                        "Octopus",
+                        "Dolphin",
+                        "Kangaroo"
+                    ],
+                    [
+                        "London",
+                        "Berlin",
+                        "Paris",
+                        "Madrid"
+                    ],
+                    [
+                        "JavaScript",
+                        "Java",
+                        "C++",
+                        "Python",
+                        "Swift"
+                    ],
+                    [
+                        "F. Scott Fitzgerald",
+                        "Ernest Hemingway",
+                        "George Orwell",
+                        "J.K. Rowling"
+                    ],
+                    [
+                        "Red",
+                        "Green",
+                        "Purple",
+                        "Yellow",
+                        "Blue"
+                    ]
+                ];
+
+                const answers = [
+                    [0, 1, 0, 1, 0],
+                    [0, 0, 1, 0],
+                    [1, 0, 1, 0, 0],
+                    [1, 0, 0, 0],
+                    [1, 0, 0, 0, 1]
+                ];
+
+
+                const inputTest = {
+                    questions: questions,
+                    choices: choices,
+                    answers: answers,
+                };
+
+                const outputTest = randomizeTest(inputTest);
+
+                const inputIndex = inputTest.questions.indexOf("Which animals are mammals?");
+                const outputIndex = outputTest.questions.indexOf("Which animals are mammals?");
+
+                const sortedOriginalChoices = JSON.stringify(inputTest.choices[inputIndex].sort());
+                const sortedOriginalAnswers = JSON.stringify(inputTest.answers[inputIndex].sort());
+
+                const sortedOutputChoices = JSON.stringify(outputTest.choices[outputIndex].sort());
+                const sortedOutputAnswers = JSON.stringify(outputTest.answers[outputIndex].sort());
+
+                assert(
+                    inputTest.questions[inputIndex] === outputTest.questions[outputIndex],
+                    `Questions are the same: \nExpected "${inputTest.questions[inputIndex]}", \nActual "${outputTest.questions[outputIndex]}"`
+                );
+
+                assert(
+                    sortedOriginalChoices === sortedOutputChoices,
+                    `Choices are the same: \nExpected "${sortedOriginalChoices}", \nActual "${sortedOutputChoices}"`
+                );
+
+                assert(
+                    sortedOriginalAnswers === sortedOutputAnswers,
+                    `Answers are the same: \nExpected "${sortedOriginalAnswers}", \nActual "${sortedOutputAnswers}"`
+                );
+            }
+            /* End Dave Daniels implementation */
+
+            function Test(questions, choices, answers) {
+                this.questions = questions;
+                this.choices = choices;
+                this.answers = answers;
+            }
+
+            //
+            // displays the sample test in the browser with the correct answer highlighted
+            //
+            function renderTest(test, parent) {
+                const randomizedTest = randomizeTest(test);
+
+                for (let i = 0; i < randomizedTest.questions.length; i += 1) {
+                    const qElement = document.createElement("li");
+                    let correctCount = 0;
+
+                    qElement.setAttribute("class", "question");
+                    qElement.appendChild(
+                        document.createTextNode(randomizedTest.questions[i])
+                    );
+
+                    for (let j = 0; j < randomizedTest.answers[i].length; j += 1) {
+                        if (randomizedTest.answers[i][j] === 1) {
+                            correctCount += 1;
+                        }
+                    }
+
+                    for (let j = 0; j < randomizedTest.choices[i].length; j += 1) {
+                        const choiceLabelElement = document.createElement("label"),
+                            choiceInputElement = document.createElement("input");
+
+                        choiceInputElement.setAttribute("name", (correctCount === 1 ? "radio" : "check") + i);
+                        choiceInputElement.setAttribute("type", correctCount === 1 ? "radio" : "checkbox");
+                        choiceInputElement.setAttribute("value", j);
+
+                        choiceLabelElement.classList.add("choice");
+                        if (randomizedTest.answers[i][j] === 1) {
+                            choiceLabelElement.classList.add("correct");
+                        }
+
+                        choiceLabelElement.appendChild(choiceInputElement);
+                        choiceLabelElement.appendChild(
+                            document.createTextNode(randomizedTest.choices[i][j])
+                        );
+
+                        qElement.appendChild(choiceLabelElement);
+                        parent.appendChild(qElement);
+                    }
+                }
+            }
+
+            const questions = [
+                "What can you find in Rustici Software's office?",
+                "All of Rustici Software employees are expected to work no more than ____ hours per week.",
+                "The end users of Rustici Software's products number in the _________",
+                "Rustici Software is a (choose all that apply):",
+                "Tim likes to wear:"
+            ],
+                choices = [
+                    [
+                        "Dart Board",
+                        "Ping Pong Table",
+                        "Cubicles",
+                        "Laptops with dual monitors",
+                        "TPS reports, ummm yeah"
+                    ],
+                    [
+                        "80",
+                        "40",
+                        "50",
+                        "60"
+                    ],
+                    [
+                        "Tens",
+                        "Hundreds",
+                        "Thousands",
+                        "Millions",
+                        "Billions"
+                    ],
+                    [
+                        "Great place to work",
+                        "Respected leader in its field",
+                        "Place where people don't matter, just results"
+                    ],
+                    [
+                        "Capri pants",
+                        "Goth attire",
+                        "Sport coat",
+                        "T-shirt and shorts"
+                    ]
+                ],
+                answers = [
+                    [1, 1, 0, 1, 0],
+                    [0, 1, 0, 0],
+                    [0, 0, 0, 1, 0],
+                    [1, 1, 0],
+                    [0, 0, 0, 1, 0]
+                ],
+                testx = new Test(questions, choices, answers);
+
+            renderTest(testx, document.getElementById("questions"));
+            runTestCases();
+        }());
+    </script>
+</body>
+
+</html>
