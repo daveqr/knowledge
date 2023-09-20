@@ -23,12 +23,17 @@
 | Comment                                      | Cmd + /                       |
 | Delete Line                                  | Cmd + Y                       |
 | Delete Line to Clipboard                     | Opt + X                       |
-| Duplicate selected line                      | Cmd + D                       |
+| Duplicate selected line                      | Cmd + D                       
+|	|
+| Select vertically | Alt while clicke and dragging the cursor
+|
 | **Refactoring**                              |                               |
 | Refactor/Rename                              | Shift + F6                    |
 | **Method Implementations**                   |                               |
 | Hide method implementations                  | Shift + Cmd + -               |
-| Show method implementations                  | Shift + Cmd + +               |
+| Show method implementations                  | Shift + Cmd + +               
+|
+| Show interface implementations                  | Shift + Cmd + B               |
 | **Argument Documentation for Method Calls**  |                               |
 | Argument documentation for method calls      | Cmd + P                       |
 | **Text Selection and Manipulation**          |                               |
@@ -52,11 +57,11 @@
 | Run Code Analysis                          | Option + Cmd + L              |
 | **Code Generation**                         |                               |
 | Generate Code                               | Cmd + N                       |
-| Override/Implement Methods                  | Cmd + O (Windows/Linux) or Cmd + O (macOS) |
+| Override/Implement Methods                  | Cmd + O (Windows/Linux) or Cmd + O (macOS)|
 | **Version Control**                         |                               |
 | Commit Changes                              | Cmd + K                       |
 | Update Project                              | Cmd + T                       |
-| Show Version Control Tool Window            | Cmd + 9 (Windows/Linux) or Cmd + 9 (macOS) |
+| Show Version Control Tool Window            | Cmd + 9 (Windows/Linux) or Cmd + 9 (macOS)|
 | **Debugging**                               |                               |
 | Toggle Breakpoint                           | Cmd + F8                      |
 | Step Into                                   | F7                            |
@@ -68,3 +73,8 @@
 | **Navigation and Documentation**             |                               |
 | Quick Documentation                         | F1 (Windows/Linux) or F1 (macOS) |
 | Find Usages                                 | Option + F7 (Windows/Linux) or Alt + F7 (macOS) |
+| **Tool Windows**                          |                               |
+| Run                             | Cmd + 4                       |
+| Debug                             | Cmd + 5                       |
+| Structure                             | Cmd + 7                       |
+| Git                             | Cmd + 9                       |
