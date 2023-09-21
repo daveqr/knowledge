@@ -4,8 +4,11 @@
 | -------------------------------------------- | ----------------------------- |
 | **Running/Debugging**                        |                               |
 | Run                                          | Shift + F10                   |
-| Run test                                    | Ctrl + Shift + F10            |
-| Debug test                                 | Ctrl + Shift + F9             |
+| Run focused config (ie all tests) | Ctrl+Shift + F10                   |
+| Run from config list                                 | Opt + Shift + F10             |
+| Debug                                 |Shift + F9             |
+| Debug from config list                                 | Opt + Shift + F9             |
+| Debug focused config (ie all tests) | Ctrl+Shift + F9                   |
 | **Code Formatting**                          |                               |
 | Format                                       | Opt + Cmd + L                 |
 | Format Whole File                            | Shift + Opt + Cmd + L         |
@@ -29,6 +32,8 @@
 |
 | **Refactoring**                              |                               |
 | Refactor/Rename                              | Shift + F6                    |
+| Introduce variable                              | Alt +Cmd + v                    |
+| Inline variable                              | Alt +Cmd + n                   |
 | **Method Implementations**                   |                               |
 | Hide method implementations                  | Shift + Cmd + -               |
 | Show method implementations                  | Shift + Cmd + +               
@@ -44,8 +49,9 @@
 | Paste from five previous copies              | Cmd + Shift + V               |
 | **Search and Find**                          |                               |
 | Find                                         | Cmd + F                       |
-| Find and Replace                             | Cmd + R                       |
-| Find in Path                                 | Shift + Cmd + F               |
+| Find and replace                             | Cmd + R                       |
+| Find in path                                 | Shift + Cmd + F               |
+| Find in all files                                 | Ctrl + Shift + F               |
 | **Navigation and File Management**           |                               |
 | Open File                                   | Cmd + O                       |
 | Close File                                  | Cmd + W                       |

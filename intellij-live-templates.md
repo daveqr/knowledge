@@ -49,6 +49,19 @@ switch ($VAR$) {
 }
 ```
 
+**foff**
+
+```
+// @formatter:off
+```
+
+**fon**
+
+```
+// @formatter:on
+```
+
+
 ### Built-in tempaltes
 
 | Shortcut | Description                                   |
