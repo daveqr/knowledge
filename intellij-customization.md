@@ -1,12 +1,12 @@
-# Intellij Live Templates and Code Snippets
+# Intellij customization
 
-Intellij Live Templates and VS Code snippets are predefined code snippets that you can quickly insert into your code by typing an abbreviation and pressing the Tab key.
+## Custom keyboard shortcuts
 
-## Code Snippets
+| **Functionality**                            | **Shortcut**                  |
+| -------------------------------------------- | ----------------------------- |
+| Git diff                                          | Shift-G Shift-D                |
 
-View -> Command Pallet -> Configure user snippets
-
-## Intellij Live Templates
+## Live templates
 
 ### Custom templates
 
@@ -25,27 +25,11 @@ public void should$NAME$() {
 }
 ```
 
-
 **lambda**
 
 ```
 ($PARAM$) -> {
     $BODY$
-}
-```
-
-**switch**
-
-```
-switch ($VAR$) {
-    case $CASE1$:
-        $END$
-        break;
-    case $CASE2$:
-        $END$
-        break;
-    default:
-        $END$
 }
 ```
 

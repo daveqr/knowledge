@@ -19,26 +19,30 @@
 | Navigate to File                             | Shift + Cmd + N               |
 | Find members in current file                 | Cmd + F12                     |
 | Find members in current project              | Cmd + Alt + Shift + N         |
+| Jump up to overriden definition              | Cmd + U         |
 | **Recent Files and Locations**               |                               |
 | Recent Files                                 | Cmd + E                       |
 | Recent Locations                             | Shift + Cmd + E               |
+| Switch tabs forward                             | Ctrl + tab              |
+| Switch tabs backwars                             | Ctrl + shift + tab              |
 | **Editing**                                  |                               |
 | Comment                                      | Cmd + /                       |
 | Delete Line                                  | Cmd + Y                       |
 | Delete Line to Clipboard                     | Opt + X                       |
 | Duplicate selected line                      | Cmd + D                       
-|	|
 | Select vertically | Alt while clicke and dragging the cursor
-|
 | **Refactoring**                              |                               |
 | Refactor/Rename                              | Shift + F6                    |
-| Introduce variable                              | Alt +Cmd + v                    |
-| Inline variable                              | Alt +Cmd + n                   |
+| Introduce variable                              | Alt + Cmd + v                    |
+| Introduce parameter                              | Alt + Cmd + p                    |
+| Introduce constant                              | Alt + Cmd + c                    |
+| Introduce field                              | Alt + Cmd + f                    |
+| Inline variable                              | Alt + Cmd + n                   |
 | **Method Implementations**                   |                               |
 | Hide method implementations                  | Shift + Cmd + -               |
 | Show method implementations                  | Shift + Cmd + +               
 |
-| Show interface implementations                  | Shift + Cmd + B               |
+| Show interface implementations                  | Alt + Cmd + B               |
 | **Argument Documentation for Method Calls**  |                               |
 | Argument documentation for method calls      | Cmd + P                       |
 | **Text Selection and Manipulation**          |                               |
@@ -48,6 +52,7 @@
 | **Clipboard**                                |                               |
 | Paste from five previous copies              | Cmd + Shift + V               |
 | **Search and Find**                          |                               |
+| Search everywhere                                         | shift shift                       |
 | Find                                         | Cmd + F                       |
 | Find and replace                             | Cmd + R                       |
 | Find in path                                 | Shift + Cmd + F               |
@@ -77,10 +82,17 @@
 | Extract Method                              | Option + Cmd + M              |
 | Change Method Signature                     | Cmd + F6                      |
 | **Navigation and Documentation**             |                               |
-| Quick Documentation                         | F1 (Windows/Linux) or F1 (macOS) |
-| Find Usages                                 | Option + F7 (Windows/Linux) or Alt + F7 (macOS) |
+| Quick Documentation                         |  F1 |
+| Find Usages                                 | Alt + F7 |
 | **Tool Windows**                          |                               |
 | Run                             | Cmd + 4                       |
 | Debug                             | Cmd + 5                       |
 | Structure                             | Cmd + 7                       |
 | Git                             | Cmd + 9                       |
+| Close window                             | Shift-Esc                       |
+| Open/Close project window                             | Cmd-1                       |
+| Open/Close bookmarks window                             | Cmd-2                       |
+| Open/Close Run window                             | Cmd-4                       |
+| Open/Close Structure window                             | Cmd-7                       |
+| Open/Close Git window                             | Cmd-9                       |
+| Open/Close Git commit window                             | Cmd-0                       |

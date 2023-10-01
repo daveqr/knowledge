@@ -1,11 +1,118 @@
 # Java Proficiency
 
+## Project Amber
+
+[https://openjdk.org/projects/amber/](Project Amber) explores smaller Java 
+language features that have been accepted as JEPs. These features go through two rounds of preview before becoming an offical part of the Java platform.
+
+## Switch
+
+### Expressions
+
+* Don't need `break` or fall-through expressions
+* A value is returned
+
+```
+result = switch (expression) {
+    case constant1 -> expression1;
+    case constant2 -> expression2;
+    // ...
+    default -> expressionN;
+};
+```
+
+Example:
+
+```
+String dayOfWeek = "Monday";
+int dayNumber = switch (dayOfWeek) {
+    case "Monday" -> 1;
+    case "Tuesday" -> 2;
+    case "Wednesday" -> 3;
+    case "Thursday" -> 4;
+    case "Friday" -> 5;
+    case "Saturday" -> 6;
+    case "Sunday" -> 7;
+    default -> -1;
+};
+```
+
+### Patern-matching
+
+```
+	var formatted =
+		switch (o) {
+		   case null       -> "null";
+			case Integer i -> String.format("int %d", i);
+			case Long l    -> String.format("long %d", l);
+			case Double d  -> String.format("double %f", d);
+			// guarded case, order matters
+   		   case String s when s.length() = 1 -> …
+   		   case String s   -> String.format("string %s", s);
+			default        -> o.toString();
+```
+
 ## Records
 
 Provide a more concise way to declare classes that are primarily used to store data, such as DTOs, POJOs, or entities with just fields and no behavior. Records help reduce boilerplate code.
 
 ```
 public record Person(String name, int age) {}
+```
+
+Can add methods, eg a constructor that performs validation.
+
+```
+public record Person(String name, int age) {
+    public Person(String name, int age) {
+        if (age > 1) {
+            this.name = name;
+            this.age = age;
+        } else {
+            throw new IllegalArgumentException("Age must be greater than 1");
+        }
+    }
+}
+```
+
+## Pattern-matching for instance of
+
+Old way:
+
+```
+if (obj instanceof String ) {
+	String s = (String)obj
+	// use s
+}
+```
+
+Using pattern-matching:
+
+```
+if (obj instanceof String s) {
+	// use s
+}
+```
+
+## Sealed classes and interfaces
+
+Restrict which other classes or interfaces can extend them. Allows us to better
+model what we had in mind when we created the hierarchy.
+
+```
+public sealed class Shape permits Circle, Rectangle, Triangle {
+    // Common methods and fields for all subclasses
+}
+
+// final subclass
+final class Circle extends Shape {…}
+
+// sealed subclass
+final sealed class Rectangle extends Shape permits FilledRectangle {…}
+
+// non-sealed subclass (anything can extend)
+public non-sealed class Triangle extends Shape {…}
+
 ```
 
 ## Hash-based data structures
@@ -93,4 +200,31 @@ public static void main(String[] args) {
     // Print the name of the month (January)
     System.out.println(monthName);
 }
+```
+
+## Text Blocks
+
+Renders a string that spans multiple lines. White space is considered incidental indentation and is stripped by the compiler.
+
+```
+String message = """
+    'The time has come,' the Walrus said,
+    'To talk of many things:
+    Of shoes -- and ships -- and sealing-wax --
+    Of cabbages -- and kings --
+    And why the sea is boiling hot --
+    And whether pigs have wings.'
+    """;
+```
+
+Formatted text block:
+
+```
+var html += """
+				<tr>
+				<td>Retweets: %s</td>
+				<td>Likes: %s</td>
+				</tr>
+			""".formatted(t.getRetweetCount(),
+				           t.getLikeCount());
 ```
