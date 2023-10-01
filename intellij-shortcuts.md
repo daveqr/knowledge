@@ -41,7 +41,6 @@
 | **Method Implementations**                   |                               |
 | Hide method implementations                  | Shift + Cmd + -               |
 | Show method implementations                  | Shift + Cmd + +               
-|
 | Show interface implementations                  | Alt + Cmd + B               |
 | **Argument Documentation for Method Calls**  |                               |
 | Argument documentation for method calls      | Cmd + P                       |
