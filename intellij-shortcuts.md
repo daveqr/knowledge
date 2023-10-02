@@ -31,6 +31,7 @@
 | Delete Line to Clipboard                     | Opt + X                       |
 | Duplicate selected line                      | Cmd + D                       
 | Select vertically | Alt while clicke and dragging the cursor
+| Safe Delete                     | Cmd + Del                       |
 | **Refactoring**                              |                               |
 | Refactor/Rename                              | Shift + F6                    |
 | Introduce variable                              | Alt + Cmd + v                    |
