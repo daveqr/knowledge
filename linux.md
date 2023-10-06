@@ -15,8 +15,12 @@
 	```
 
 ## File sytem
+
+### Directories
 	
 ![Linux file system](linux-fs.png)
+
+
 
 * `/bin`: binaries
 * `/sbin`: contains commands for a superuser
@@ -33,3 +37,34 @@
 * `/var`: variable data that can change, such as logs and run-time data
 * `/dev`: device files
 * `/dev/null`: special file that discards any data written to it and returns an end-of-file when read
+
+
+### Permissions
+
+#### Change owner
+
+```bash
+// Change the owner
+$ chown <newowner> filename
+
+// Change the owner and the gorup
+$ chown <newowner>:<newgroup> filename
+```
+
+#### Change permissions
+
+Use the chmod (stands for change mode) command.
+
+Linux scoring system: r=4, w=2, x=1
+
+```bash
+$ sudo chmod 774 filename
+```
+
+#### Common permissions
+
+| Permission | Description                            |
+|------------|----------------------------------------|
+| 644        | File baseline                          |
+| 755        | Directory baseline                    |
+| 400        | Key pair (like an encryption private key) |

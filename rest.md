@@ -1,3 +1,11 @@
+- [REST](#rest)
+  - [Endpoints](#endpoints)
+  - [HATEOAS](#hateoas)
+    - [Standards](#standards)
+    - [HAL+JSON (Hypertext Application Language)](#haljson-hypertext-application-language)
+      - [Response Media Type (Content-Type Header)](#response-media-type-content-type-header)
+      - [Specification](#specification)
+
 # REST
 
 REST stands for "Representational State Transfer." It is an architectural style and set of constraints for designing networked applications, particularly web services and APIs. RESTful systems are characterized by their statelessness, use of standard HTTP methods (GET, POST, PUT, DELETE), and emphasis on resources and representations.
@@ -29,8 +37,8 @@ HATEOAS (Hypermedia as the Engine of Application State) is a fundamental constra
 
 While there is no single way to format a HATEOAS response, one common approach is to include a "links" item within the object, which provides structured information about links and their associated actions or resources.
  
-#### Example
-```
+**Example**
+```json
 {
   "book": {
     "title": "The Great Gatsby",
@@ -72,17 +80,15 @@ The `application/hal+json` content-type header is sometimes used to indicate tha
 
 Clients can send a request with an "Accept" header specifying "application/hal+json" to indicate their preference for HAL+JSON responses. The server can then respond with data formatted according to the HAL specification.
 
-#### Request Example
-
-```
+**Request Example**
+```http
 GET /api/resource HTTP/1.1
 Host: example.com
 Accept: application/hal+json
 ```
 
-#### HAL+JSON Response Example
-
-```
+**HAL+JSON Response Example**
+```http
 HTTP/1.1 200 OK
 Content-Type: application/hal+json
 
@@ -106,6 +112,5 @@ Content-Type: application/hal+json
 ```
 
 #### Specification
-
 
 [JSON Hypertext Application Language](https://tools.ietf.org/html/draft-kelly-json-hal-08)

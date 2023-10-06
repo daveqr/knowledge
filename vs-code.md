@@ -2,11 +2,15 @@
 
 ## Quick Commands
 
-
-| Action               | Shortcut                  |
-|----------------------|---------------------------|
-| Format                  | Shift + Option + F |
-
+| Action                   | Shortcut               |
+| ------------------------ | ---------------------- |
+| Format                   | Shift + Alt + F        |
+| Open Explorer            | Cmd + Shift + E        |
+| Close Explorer (sidebar) | Cmd + Shift E, Cmd + B |
+| Cycle through workspaces | Cmd + `                |
+| Cycle through tabs       | Ctrl + tab             |
+| Open terminal            | Ctrl + `               |
+| Format document          | Alt + Shift + F        |
 
 ## Debug
 https://code.visualstudio.com/docs/nodejs/nodejs-debugging

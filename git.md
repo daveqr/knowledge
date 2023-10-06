@@ -50,7 +50,7 @@ Note that cherry picking can be useful in situations where you want to apply a s
 ## Commands
 
 ### Staging
-```
+```bash
 # add changes to the staging area
 $ git add
 
@@ -73,7 +73,7 @@ $ git restore --staged <file>
 ```
 
 ### Cherry-pick a single file from a commit
-```
+```bash
 # Get the commit
 $ git cherry-pick -n <commit>
 
@@ -91,7 +91,7 @@ $ git checkout .
 
 ### Revert changes to a single file
 
-```
+```bash
 # revert all changes
 $ git co example.txt
 
@@ -102,7 +102,7 @@ $ git co abc123 -- file.txt
 
 ### Undo changes that have not been committed
 
-```
+```bash
 # Move current branch pointer to the commit you want to return to, effectively removing
 # the changes made in the subsequent commits. The changes made in those subsequent commits
 # will still be present in your working directory and can be modified or committed again.
@@ -114,12 +114,12 @@ $ git co example.txt
 ```
 
 ### Add to the previous commit
-```
+```bash
 $ git commit --amend 
 ```
 
 ### Rebase a branch (A B C A')
-```
+```bash
 $ git co new-branch
 
 # make changes and commit on new-branch
@@ -130,7 +130,7 @@ $ git merge new-branch
 ```
 
 ### Rebase a branch so that changes are inserted (A A' B C)
-```
+```bash
 $ git co new-branch
 
 # make changes and commit on new-branch
@@ -143,17 +143,17 @@ $ git merge new-branch
 ```
 
 ### Delete a remote branch
-```
+```bash
 $ git push origin --delete new-branch
 ```
 
 ### Change a commit message
-```
+```bash
 $ git commit —amend
 ```
 
 ### Squash the last two commits
-```
+```bash
 $ git rebase -i HEAD~2
 ```
 

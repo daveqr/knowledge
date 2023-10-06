@@ -1,5 +1,38 @@
 # Vim
 
+## Quick Commands
+
+* `w`: until the start of the next word
+* `e`: to the end of the current word
+* `$`: to the end of the line
+* `0`: to the beginning of the line
+* `b`: to the beginning of the word
+* `x`: delete the character under the cursor
+* `X`: delete the character previous to the cursor
+* `dw`: delete forward to the start of the next word
+* `db`: delete back to the beginning of the word 
+* `de`: delete forward the the end of the word
+* `d$`: delete to the end of the line
+* `i`: insert
+* `a`: append at cursor
+* `A`: append at the end of the line
+* `I`: append at the beginning of the line
+* `u`: undo the last command
+* `f [char]`: move to the next given char in line
+* `F [char]`: move to the previous char in line
+* `;` and `,`: repeat last f or F
+* `/yourtext and then: n, N`: search text
+* `r[char]`: replace character below cursor
+* `S`: clear current line; to insert mode
+* `yy`: copy current line
+* `P`: paste copied text after cursor
+* `w`: forward one word
+* `b`: backward one word
+* `e`: move to the end of the word
+* `ge`: move to the end of the previous word
+
+## Movement
+
 * `hjkl`
 * `h` (left)  `j` (down)       `k` (up)      `l` (right)
 
@@ -10,33 +43,8 @@
        j               The j key looks like a down arrow.
        v
 ```
-## Text editing
 
-* `x`: delete the character under the cursor
-* `X`: delete the character previous to the cursor
-* `i`: insert text
-* `a`: append text at cursor
-* `A`: append text at the end of the line
-* `O`: append text at the beginning of the line
-* `u`: undo the last command
-* `f [char]`: move to the next given char in line
-* `F [char]`: move to the previous char in line
-* `;` and `,`: repeat last f or F
-* `/yourtext and then: n, N`: search text
-* `r[char]`: replace character below cursor
-* `S`: clear current line; to insert mode
-* `yy`: copy current line
-* `P`: paste copied text after cursor
-
-
-
-## Movement
-
-* `w`: forward one word
-* `b`: backward one word
-* `e`: move to the end of the word
-* `ge`: move to the end of the previous word
-
+asdfasdf f
 ## Commands
 
 `operator   [number]   motion`

@@ -4,19 +4,19 @@
 
 * Generate a module
 
-	```
+	```bash
 	$ ng generate module <module-name>
 	```
 
 * Generate a component
 
-	```
+	```bash
 	$ ng generate component <module-name>/<component>
 	```
 	
 * Generate a service
 
-	```
+	```bash
 	$ ng generate service services/<service>
 	```	
 
@@ -28,13 +28,13 @@ Routing configuration involves setting up a module that contains routes and impo
 
 To generate a `categories-routing.module.ts` file and configure it for import into the `CategoriesModule`, use the following command:
 
-```shell
+```bash
 $ ng generate module categories/categories-routing --flat --module=categories/categories.module
 ```
 
-### Example Routing File (categories-routing.module.ts)
+**Example Routing File (categories-routing.module.ts)**
 
-```
+```typescript
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesHomeComponent } from './categories-home/categories-home.component';
@@ -50,8 +50,8 @@ const routes: Routes = [
 export class CategoriesRoutingModule {}
 ```
 
-### Example Module Using the Routing File (categories.module.ts)
-```
+**Example Module Using the Routing File (categories.module.ts)**
+```typescript
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoriesHomeComponent } from './categories-home/categories-home.component';

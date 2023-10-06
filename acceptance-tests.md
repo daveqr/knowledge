@@ -1,3 +1,18 @@
+- [Acceptance Tests](#acceptance-tests)
+  - [How to implement acceptance tests](#how-to-implement-acceptance-tests)
+    - [Four layers of acceptance tests](#four-layers-of-acceptance-tests)
+  - [Example: Buying a book from a store](#example-buying-a-book-from-a-store)
+    - [What are the steps?](#what-are-the-steps)
+      - [Gherkin](#gherkin)
+  - [Test Cases](#test-cases)
+  - [DSL](#dsl)
+    - [Custom DSL](#custom-dsl)
+      - [Custom DSL example](#custom-dsl-example)
+    - [Cucumber](#cucumber)
+  - [Protocol driver](#protocol-driver)
+    - [Using various drivers](#using-various-drivers)
+  - [System under test](#system-under-test)
+
 # Acceptance Tests
 
 [How to Write Acceptance Tests](https://www.youtube.com/watch?v=JDD5EEJgpHU)
@@ -75,7 +90,7 @@ Feature: Buying a Book with a Credit Card
 
 #### Custom DSL example
 
-```
+```java
 @Test
 public void shouldBuyBookWithCreditCard() {
 	shopping.goToStore();
@@ -87,10 +102,12 @@ public void shouldBuyBookWithCreditCard() {
 	
 	shopping.checkOut("item: Ciontinuous Delivery");
 	
-	shopping.assertItemPurchase("itemL ContinuousDelivery);
+	shopping.assertItemPurchase("item: ContinuousDelivery);
 }
+```
 
-// Example of a checkout implementation
+**Example of a checkout implementation**
+```java
 public void checkOut(String… args) {
 	Params params = new Params(args);
 	String item = params.Optional("item", "Continuous Delivery");
@@ -109,8 +126,8 @@ Cucumber acts as an intermediary between the plain-text Gherkin scenarios and th
 
 Cucumber takes the steps defined by the annotations and runs them in order as defined by the Cucumber scenarios. This means steps can be reused. Also, the internals of the test can use a custom DSL.
 
-#### Example using Cucumber and custom DSL
-```
+**Example using Cucumber and custom DSL**
+```java
 public class ShoppingSteps {
 
     @Given("the user goes to the online store")
@@ -153,9 +170,9 @@ It's the only part of the test infrastructure that understandds "how". For examp
 
 These details are hidden from higher levels. In the test case you don't say things like "search for this box" or "click on this button", you say "buy a book." The protocol driver knows what it should do.
 
-### Example
+**Example**
 
-```
+```java
 @Overrid
 public void addSelectedItemToShoppingBasket() {
 	WebElement buyButton = driver().findElement(…
