@@ -4,9 +4,10 @@
 
 * `w`: until the start of the next word
 * `e`: to the end of the current word
+* `b`: to the beginning of the word
+* `ge`: to the end of the previous word (`g` means go, `e` means end)
 * `$`: to the end of the line
 * `0`: to the beginning of the line
-* `b`: to the beginning of the word
 * `x`: delete the character under the cursor
 * `X`: delete the character previous to the cursor
 * `dw`: delete forward to the start of the next word
@@ -15,8 +16,10 @@
 * `d$`: delete to the end of the line
 * `i`: insert
 * `a`: append at cursor
-* `A`: append at the end of the line
 * `I`: append at the beginning of the line
+* `A`: append at the end of the line
+* `ea`: append at end of word (`e` moves to end of word, `a` appends)
+* `bi`: insert at beginnig of word (`b` moves to beginning, `i` inserts)
 * `u`: undo the last command
 * `f [char]`: move to the next given char in line
 * `F [char]`: move to the previous char in line

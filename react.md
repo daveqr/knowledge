@@ -1,32 +1,61 @@
 # React
 
-**Create a TypeScript app**
+* Uses and updates a virtual dom rather than updating the dom directly
+* After the virtual dom is updated, a diff is made against the actual dom, and only the portion that has chanaged is re-rendered
 
+## Virtual DOM
+
+Because React is declarative, you don't  update the DOM directly. You tell React what to do and it updates the DOM for you.
+
+React uses a virtual DOM, which is an in-memory replica of the actual DOM. Instead of directly modifying the real DOM, React applies updates to this virtual representation. Because it is in-memory, operations are faster and it is easier to synch with the original DOM.
+
+### Virtual DOM changes
+
+1. React generates a Virtual DOM, a replica of the actual DOM.
+2. When a modification occurs, React duplicates the Virtual DOM, applies the change to the copy, and compares it to the original Virtual DOM.
+3. React identifies differences through this diffing process and selectively updates only the necessary elements in the real DOM. For multiple changes, React batches the modifications and applies them together. This greatly improves performance vs. making changes directly to the DOM. This process is known as `reconcilliation`.
+
+![Virtual DOM](./virtual-dom.png)
+
+### Keys
+
+Special attributes that can be added to elements when rendering lists of items. They are used to help React identify each item uniquely and efficiently update the UI when the list changes.
+
+Keys:
+
+* uniquely identify elements
+* provide a stable identity across renders
+* allow for efficient updates
+* ensure that components with the same key are not re-created
+
+*Creating a list with keys on each item:*
+
+```javascript
+const items = [
+  { id: 1, text: "Item 1" },
+  { id: 2, text: "Item 2" },
+  { id: 3, text: "Item 3" },
+];
+
+const itemList = items.map((item) => (
+  <div key={item.id}>{item.text}</div>
+));
+
+ReactDOM.render(itemList, document.getElementById("root"));
 ```
-$ npx create-react-app my-app --template typescript
-```
+
 ## Commands
 
-**Start the app**
+| Description             | Command                                               |
+| ----------------------- | ----------------------------------------------------- |
+| Create a TypeScript app | `$ npx create-react-app my-app --template typescript` |
+| Start the app           | `$ yarn start`                                        |
+| Run tests               | `$ yarn test`                                         |
+| Build                   | `$ yarn build`                                        |
 
-```
-$ yarn **start**
-```
-
-**Run tests**
-
-```
-$ yarn test
-```
-
-**Build**
-
-```
-$ yarn buid
-```
 ## Data types
 
-```
+```typescript
 // String
 const topic = "React";
 
@@ -42,9 +71,9 @@ String(true) // to view in the web page
 
 **Ternary**
 
-Use terneary instead of if-else.
+Use ternary instead of if-else.
 
-```
+```typescript
 {
   age > 4 ? <h3>Is True</h3> : <h3>Is False</h3>
 }
@@ -69,10 +98,10 @@ To loop, use the map method.
 
 Standard hooks:
 
-* useState
-* useEffect
+* [useState](https://react.dev/reference/react/useState)
+* [useEffect](https://react.dev/reference/react/useEffect)
 * useContext
-* useRef
+* [useRef](https://react.dev/reference/react/useRef)
 * useMemo
 * useCallback
 * useReducer
@@ -80,14 +109,13 @@ Standard hooks:
 
 ### useState
 
-[useState](https://react.dev/reference/react/useState) declares and tracks state value within a component. When the state is changed, React re-renders the JSX to reflect the new value.
+* declares and tracks state value within a component
+* returns an array with two values: current state and a `set` update function
+* when the state is changed, React re-renders the JSX to reflect the new value
+* use the update method returned by the useState hook to change the state rather than changing it directly
+* `set` doesn't change the original `state` reference value, instead creates a new reference which is used to re-render the dom. this is why you shouldn't change the `state` value directly but instead use the `set` method.
 
-Returns an array with two values:
-
-* the current state (initialized with the optional inital value)
-* a `set` function that lets you update the state and trigger a re-render of the JSX
-
-```
+```typescript
 import { useState } from 'react';
 
 function MyComponent() {
@@ -102,7 +130,7 @@ function MyComponent() {
 
 Can pass in an updater function to update the state variable in running code.
 
-```
+```typescript
 function handleClick() {
   // using an updater function
   setAge(a => a + 1); // setAge(42 => 43)
@@ -117,7 +145,7 @@ function handleClick() {
 
 Accepts an optional initial value, which can be any valid javascript value or a function.
 
-```
+```typescript
 // 🚩 calls "createInitialTodos()" for every render, but it only
 // needs the inital render 
 function TodoList() {
@@ -130,11 +158,10 @@ function TodoList() {
   // ...  
 ```
 
-
 #### Objects and arrays in state
 Can put objects in state, but replace rather than mutate the existing objects
 
-```
+```typescript
 // 🚩 Don't mutate an object in state like this:
 form.firstName = 'Taylor';
 
@@ -145,6 +172,227 @@ setForm({
 });
 ```
 
+### useEffect
+
+Side-effects are interactions with external systems that occur as a result of a component's rending or updating. Typical side-effects include:
+
+* DOM manipulation
+* data fetching (making async API calls)
+* writing to storage
+* subscription management
+
+The most common way of managing side-effects is through the `useEffect` hook. With `useEffect`, you:
+
+* provide a `setup` function that React will execute after rendering or re-rendering the component
+* return a `cleanup` function to disconnect from the external system
+* optionally, an array of dependencies as the hook's second argument, listing the values from the component used inside the function. When any of these dependencies change, the effect is triggered anew. If you omit the dependency array altogether, the effect runs after each render. 
+
+#### Examples
+
+*Run after every render*
+```typescript
+import React, { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `Count: ${count}`;
+  }); // no dependency array so this effect runs after every render
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+*Run once after first render*
+```typescript
+import React, { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `Count: ${count}`;
+  }, []); // runs once after initial render 
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+*Run only after state changes*
+```typescript
+import React, { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `Count: ${count}`;
+  }, [count]); // runs after 'count' state changes
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+*Run after props change*
+```typescript
+import React, { useState, useEffect } from 'react';
+
+function MyComponent(props) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    // Use the 'props' value in the effect
+    document.title = `Count: ${props.somePropValue}`;
+  }, [props.somePropValue]); // runs after 'somePropValue' changes
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+*Run after either prop or state change*
+```typescript
+import React, { useState, useEffect } from 'react';
+
+function MyComponent(props) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    // Use both 'props' value and 'count' state in the effect
+    document.title = `Count: ${props.somePropValue} - ${count}`;
+  }, [props.somePropValue, count]); // runs after 'somePropValue' or 'count' changes
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+*Cleaning up after a side effect*
+```typescript
+import React, { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCount((prevCount) => prevCount + 1);
+    }, 1000);
+
+    // Cleanup function 
+    return () => {
+      // This function will be called when the component unmounts or before the next effect runs
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+    </div>
+  );
+}
+```
+
+### useRef
+
+`useRef` allows you to reference a value without triggering a re-render. It's ideal for storing non-visual data, such as expensive calculations or integrations with third-party libraries. It can also be used to manipulate the DOM.
+
+*Usage*
+```typescript
+const ref = useRef(initialValue)
+```
+
+It returns an object with a property called `current`. If you provide an `initialValue`, `current` is set to this value on the first render.
+
+For example:
+
+```
+const ref = useRef(0);
+// can be thought of like
+const ref = {current: 0};
+// and then accessed by
+console.log(ref.current);
+```
+
+Each component instance maintains its own local copy.
+
+#### Examples
+*Caching expensive calculation*
+```typescript
+import React, { useRef } from 'react';
+
+function MyComponent({ data }) {
+  const computedData = useRef(null);
+
+  if (computedData.current === null) {
+    computedData.current = expensiveComputation(data);
+  }
+
+  return <div>Computed Data: {computedData.current}</div>;
+}
+```
+
+*Integrating with third-party library*
+```typescript
+import React, { useRef, useEffect } from 'react';
+import { createChart } from 'thirdPartyChartingLibrary';
+
+function ChartComponent() {
+  const chartRef = useRef();
+
+  useEffect(() => {
+    const chart = createChart(chartRef.current);
+    // Initialize and update the chart
+    return () => {
+      // Cleanup or teardown code
+    };
+  }, []);
+
+  return <div ref={chartRef}></div>;
+}
+```
+
+*Interacting with the DOM (set focus of the input field)*
+```typescript
+import React, { useRef, useEffect } from 'react';
+
+function MyComponent() {
+  const myRef = useRef();
+
+  useEffect(() => {
+    // Access the DOM element using the ref.
+    myRef.current.focus();
+  }, []);
+
+  return <input ref={myRef} />;
+}
+```
+
 ## JSX
 
 * combination of Javascript and HTML
@@ -152,7 +400,7 @@ setForm({
 * components combine presentation and computation, so components have both html and Javascript (or Typescript) together
 * JSX gets transpiled to plain Javascript and HTML
 * return from the react component
-  ```
+  ```typescript
   function App() {
     return <div>This is thejsx</div>;
   }
@@ -171,7 +419,7 @@ https://vercel.com/
 
 ### Using exteranl URL
 
-```
+```typescript
 function App() {
   const backgroundImageUrl = "https://example.com/images/category1.jpg";
 
@@ -189,7 +437,7 @@ function App() {
 
 ### Using local image
 
-```
+```typescript
 import React from "react";
 import background from "./images/category1.jpg";
 
@@ -212,7 +460,7 @@ export default App;
 
 Using Webpack with a local image:
 
-```
+```typescript
 <div
   className="full-background"
   style={{
@@ -228,7 +476,7 @@ Hello World
 
 Images in the `public` directory.
 
-```
+```typescript
 <div style={{ backgroundImage: "url(/images/category1.jpg)" }}>
   Hello World
 </div>
