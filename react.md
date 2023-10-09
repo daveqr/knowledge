@@ -43,6 +43,41 @@ const itemList = items.map((item) => (
 
 ReactDOM.render(itemList, document.getElementById("root"));
 ```
+## Memoization
+
+Optimizing components by preventing unnecessary re-renders. When you wrap a functional component with `React.memo`, it memoizes (caches) the component's rendered output based on its props. If the props of the component have not changed since the last render, React will reuse the memoized component without re-rendering it, which can significantly improve performance by avoiding unnecessary render operations.
+
+*Example*
+```typescript
+import React, { FC, useMemo } from 'react';
+
+interface ListItemProps {
+  item: string;
+}
+
+const ListItem: FC<ListItemProps> = ({ item }) => {
+  console.log(`Rendering item: ${item}`);
+  return <li>{item}</li>;
+};
+
+interface ListProps {
+  items: string[];
+}
+
+const List: FC<ListProps> = ({ items }) => {
+  const memoizedItems = useMemo(
+    () =>
+      items.map((item, index) => (
+        <ListItem key={index} item={item} />
+      )),
+    [items]
+  );
+
+  return <ul>{memoizedItems}</ul>;
+};
+
+export default List;
+```
 
 ## Commands
 
@@ -102,8 +137,8 @@ Standard hooks:
 * [useEffect](https://react.dev/reference/react/useEffect)
 * useContext
 * [useRef](https://react.dev/reference/react/useRef)
-* useMemo
-* useCallback
+* [useMemo](https://react.dev/reference/react/useMemo) (memoization of results)
+* [useCallback](https://react.dev/reference/react/useCallback) (memoization of function)
 * useReducer
 * useLayoutEffect 
 
@@ -391,6 +426,84 @@ function MyComponent() {
 
   return <input ref={myRef} />;
 }
+```
+
+### useCallback
+
+Lets you cache a function definition between re-renders. This prevents unnecessary re-renders of child components.  It returns a memoized version of the provided function. It takes two arguments: the function you want to memoize and an array of dependencies. When any of the dependencies change, the function is re-created; otherwise, it returns the previously memoized version. This can be particularly useful when you need to pass a callback function as a prop to a child component.
+
+**NOTE**: `useCallback` returns a function, while `useMemo` returns the result of calling the function;
+
+*Example*
+```typescript
+import React, { useCallback, useState } from 'react';
+import ChildComponent from './ChildComponent';
+
+function ParentComponent() {
+  const [count, setCount] = useState(0);
+
+  // Using useCallback to memoize the handleClick function. Note, 
+  // it returns a function, not the result of the function.
+  const handleClick = useCallback(() => {
+    setCount(count + 1);
+  }, [count]);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <ChildComponent onClick={handleClick} />
+    </div>
+  );
+}
+
+export default ParentComponent;
+```
+
+### useMemo
+
+This hook is used for optimizing the performance of value calculations, not functions. It memoizes a computed value based on the dependencies provided. It takes two arguments: a function that computes the value and an array of dependencies. When any of the dependencies change, the computed value is re-calculated; otherwise, it returns the previously memoized value. This can be useful for caching the results of expensive calculations.
+
+**NOTE**: `useMemo` returns the result of calling the function, while `useCallback` returns the function itself; 
+
+*Example*
+```Typescript
+import React, { useMemo } from 'react';
+
+function ItemList({ items }) {
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item.id}>
+          {item.name}: {calculateSquare(item.value)}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function calculateSquare(value) {
+  // Simulating an expensive computation
+  console.log(`Calculating square of ${value}`);
+  return value * value;
+}
+
+function App() {
+  const items = [
+    { id: 1, name: 'Item 1', value: 5 },
+    { id: 2, name: 'Item 2', value: 7 },
+    { id: 3, name: 'Item 3', value: 3 },
+  ];
+
+  // Using useMemo to memoize the result of calculateSquare. Note,
+  // it returns the result of the function, not the function.
+  const itemElements = useMemo(() => {
+    return <ItemList items={items} />;
+  }, [items]);
+
+  return <div>{itemElements}</div>;
+}
+
+export default App;
 ```
 
 ## JSX

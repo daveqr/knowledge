@@ -2,19 +2,33 @@
 
 ## Quick Commands
 
-* `w`: until the start of the next word
-* `e`: to the end of the current word
-* `b`: to the beginning of the word
+* `w`: forward one word 
+* `e`: move to the end of the current word 
+* `b`: back one word
 * `ge`: to the end of the previous word (`g` means go, `e` means end)
 * `$`: to the end of the line
 * `0`: to the beginning of the line
+* `}`: move forward a paragraph
+* `{`: move back a paragraph
 * `x`: delete the character under the cursor
 * `X`: delete the character previous to the cursor
+* `S`: clear current line; to insert mode
+* `s`: clear current character; to insert mode
 * `dw`: delete forward to the start of the next word
 * `db`: delete back to the beginning of the word 
 * `de`: delete forward the the end of the word
 * `d$`: delete to the end of the line
-* `i`: insert
+* `dd`: copy and delete current ine
+* `daw`: delete current word and go to command mode ("delete a word")
+* `di{`: delete the text inside the nearest pair of curly braces
+* `ci{`: change the text inside the nearest pair of curly braces
+* `vi{`: select the text inside the nearest pair of curly braces
+* `ci(`: change the text inside the nearest parenthesis
+* `di(`: delete the text inside the nearest parenthesis
+* `vi(`: select the text inside the nearest parenthesis
+* `cc`: change current line
+* `ciw`: change inner word (delete current word and go to insert mode)
+* `i`: insert at cursor
 * `a`: append at cursor
 * `I`: append at the beginning of the line
 * `A`: append at the end of the line
@@ -26,13 +40,18 @@
 * `;` and `,`: repeat last f or F
 * `/yourtext and then: n, N`: search text
 * `r[char]`: replace character below cursor
-* `S`: clear current line; to insert mode
 * `yy`: copy current line
+* `yyp`: duplicate current line below (copy and paste) 
+* `yyP`: duplicate current line above (copy and paste) 
 * `P`: paste copied text after cursor
-* `w`: forward one word
-* `b`: backward one word
-* `e`: move to the end of the word
-* `ge`: move to the end of the previous word
+* `gg`: move to the beginning of the file
+* `G`: move to the end of the file
+* `v`: start visual mode to select text character by character
+* `V`: Start visual line mode to select lines.
+* `Vk`: visual select up
+* `Vj`: visual select down
+* `V}`: visual select forward a paragraph
+* `V{`: visual select backward a paragraph
 
 ## Movement
 
@@ -47,7 +66,6 @@
        v
 ```
 
-asdfasdf f
 ## Commands
 
 `operator   [number]   motion`
