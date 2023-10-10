@@ -32,6 +32,7 @@
 | Duplicate selected line                      | Cmd + D                       
 | Select vertically | Alt while clicke and dragging the cursor
 | Safe Delete                     | Cmd + Del                       |
+| Move line up or down                     | Shift + Cmd + arrow                       |
 | **Refactoring**                              |                               |
 | Refactor/Rename                              | Shift + F6                    |
 | Introduce variable                              | Alt + Cmd + v                    |
