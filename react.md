@@ -1,5 +1,37 @@
 # React
 
+- [React](#react)
+  - [Virtual DOM](#virtual-dom)
+    - [Virtual DOM changes](#virtual-dom-changes)
+    - [Keys](#keys)
+  - [Components](#components)
+  - [Props](#props)
+    - [Props drilling](#props-drilling)
+  - [Context](#context)
+  - [Component composition](#component-composition)
+  - [Memoization](#memoization)
+  - [Commands](#commands)
+  - [Data types](#data-types)
+  - [Conditional](#conditional)
+  - [Hooks](#hooks)
+    - [useState](#usestate)
+      - [Initial state](#initial-state)
+      - [Objects and arrays in state](#objects-and-arrays-in-state)
+    - [useEffect](#useeffect)
+      - [Examples](#examples)
+    - [useRef](#useref)
+      - [Examples](#examples-1)
+    - [useCallback](#usecallback)
+    - [useMemo](#usememo)
+    - [useReducer](#usereducer)
+  - [JSX](#jsx)
+  - [Hosting on Vercel](#hosting-on-vercel)
+  - [Using exteranl URL](#using-exteranl-url)
+  - [Using local image](#using-local-image)
+  - [Using require](#using-require)
+  - [Using public image](#using-public-image)
+
+
 * Uses and updates a virtual dom rather than updating the dom directly
 * After the virtual dom is updated, a diff is made against the actual dom, and only the portion that has chanaged is re-rendered
 
@@ -43,6 +75,124 @@ const itemList = items.map((item) => (
 
 ReactDOM.render(itemList, document.getElementById("root"));
 ```
+## Components
+
+* organized in a tree-like structure
+* plain Javascript function which must return JSX
+* the component may have data private to itself, which is called `state`
+* the component may share data with other components via `props`
+
+```typescript
+import React from 'react';
+
+const MyComponent: React.FC = () => {
+  return (
+    <div>
+      <h1>Hello, React with TypeScript!</h1>
+      <p>This is a basic functional component.</p>
+    </div>
+  );
+};
+
+export default MyComponent;
+```
+
+## Props
+
+* the primary way to pass data from parent components to child components
+* unidirectional and considered immutable within the child component
+* plain JavaScript objects that hold data or values
+* defined as attributes on a JSX element
+
+```javascript
+<MyChildComponent name="John" age={25} />
+```
+
+* props are accessed as properties of the `props` object in the child
+
+```typescript
+import React from 'react';
+
+interface MyChildComponentProps {
+  name: string;
+  age?: number;
+}
+
+const MyChildComponent: React.FC<MyChildComponentProps> = ({
+  name,
+  age = 30, // Default age if not provided
+}) => {
+  return (
+    <div>
+      <p>Name: {name}</p>
+      <p>Age: {age}</p>
+    </div>
+  );
+};
+
+export default MyChildComponent;
+```
+
+### Props drilling
+
+* when props need to be passed through multiple levels of nested componnts in order to reach a deeply nested child component that requires these prop
+* occurs when a component that doesn't directly use certain props passes those props down to its child components until they reach the component that actually needs them
+* can use context or component composition to pass data to descendents without explicitly passing it through as props
+
+## Context
+
+* allows you to share data between components with passing props
+* makes information available to a hierarchy of components
+* context is avialable via a `context provider`
+* the provider wraps a part of the component tree, making the context avialable to all sub-components
+
+```javascript
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Header />
+      <MainContent />
+    </ThemeContext.Provider>
+  );
+}
+```
+
+* consuermers can extract the information with the `useContext` hook
+* there can be multiple contexts in an app
+* to create a context, use the `React.createContext` function, which returns an object with `Provider` and `Consumer` components
+```
+const MyContext = React.createContext(initialValue);
+```
+
+*Example*
+```javascript
+// Creating a context
+const ThemeContext = React.createContext('light');
+
+// Providing the context at the top-level component
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Header />
+      <MainContent />
+    </ThemeContext.Provider>
+  );
+}
+
+// Consuming the context in a child component
+function Header() {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <header style={{ background: theme === 'dark' ? 'black' : 'white' }}>
+      {/* ... */}
+    </header>
+  );
+}
+```
+
+## Component composition
+
 ## Memoization
 
 Optimizing components by preventing unnecessary re-renders. When you wrap a functional component with `React.memo`, it memoizes (caches) the component's rendered output based on its props. If the props of the component have not changed since the last render, React will reuse the memoized component without re-rendering it, which can significantly improve performance by avoiding unnecessary render operations.
@@ -116,7 +266,7 @@ Use ternary instead of if-else.
 
 To loop, use the map method.
 
-```
+```javascript
   const likes = ["JSX", "React", "Redux"];`
 
   // Elements created by the map should have a key defined.
@@ -139,7 +289,7 @@ Standard hooks:
 * [useRef](https://react.dev/reference/react/useRef)
 * [useMemo](https://react.dev/reference/react/useMemo) (memoization of results)
 * [useCallback](https://react.dev/reference/react/useCallback) (memoization of function)
-* useReducer
+* [useReducer](https://react.dev/reference/react/useReducer)
 * useLayoutEffect 
 
 ### useState
@@ -506,6 +656,152 @@ function App() {
 export default App;
 ```
 
+### useReducer
+
+ A way to manage complex state logic in functional components. It is an alternative to using `useState` when the state transitions become too intricate to handle with simple variable updates. `useReducer` is often preferred for managing state with more complex and predictable behaviors, such as in cases where you need to track multiple pieces of related data or when you want to encapsulate state logic in a more predictable manner.
+
+ By default, the `useReducer` hook is confined to the component where it is used. It is a local state management mechanism, meaning that it manages state within the scope of the component where it's defined. State managed by `useReducer` is not automatically shared with other components; it's limited to the component's own state.
+
+* **Reducer function**: At the core of useReducer is a "reducer" function that defines how the state should change based on dispatched actions. The reducer function takes the current state and an action as arguments and returns the new state. Reducers often use a `switch` statement to determine how to update the state based on the action's type.
+
+  ```javascript
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'INCREMENT':
+        return { count: state.count + 1 };
+      case 'DECREMENT':
+        return { count: state.count - 1 };
+      default:
+        return state;
+    }
+  };
+  ```
+* **Initial state**: You need to specify an initial state value when using useReducer. This initial state can be any JavaScript object or value.
+  ```javascript`
+  const initialState = { count: 0 };
+  ```
+* **Dispatch function**: The useReducer hook returns an array with two elements: the current state and a "dispatch" function. You use the dispatch function to send actions to the reducer, which then updates the state based on the action.
+  
+  ```
+  const [state, dispatch] = useReducer(reducer, initialState);
+  ```
+
+* **Action objects**: Actions are plain JavaScript objects that describe the type of change you want to make to the state. The dispatch function is used to send these actions to the reducer.
+
+  ```javascript`
+  dispatch({ type: 'INCREMENT' });
+  dispatch({ type: 'DECREMENT' });
+  ```
+
+*Example*
+```javascript
+import React, { useReducer } from 'react';
+
+const initialState = { count: 0 };
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { count: state.count + 1 };
+    case 'DECREMENT':
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+};
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <div>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch({ type: 'INCREMENT' })}>Increment</button>
+      <button onClick={() => dispatch({ type: 'DECREMENT' })}>Decrement</button>
+    </div>
+  );
+}
+
+export default Counter;
+```
+
+*Timer example*
+
+```javascript
+import React, { useReducer, useEffect } from 'react';
+
+// Define the initial state
+const initialState = {
+  seconds: 0,
+  isRunning: false,
+};
+
+// Reducer function to handle state updates
+const timerReducer = (state, action) => {
+  switch (action.type) {
+    case 'START':
+      return { ...state, isRunning: true };
+    case 'STOP':
+      return { ...state, isRunning: false };
+    case 'RESET':
+      return { ...state, seconds: 0, isRunning: false };
+    case 'TICK':
+      return { ...state, seconds: state.seconds + 1 };
+    default:
+      return state;
+  }
+};
+
+function Timer() {
+  // Initialize state using useReducer
+  const [state, dispatch] = useReducer(timerReducer, initialState);
+
+  // Function to start the timer
+  const startTimer = () => {
+    dispatch({ type: 'START' });
+  };
+
+  // Function to stop the timer
+  const stopTimer = () => {
+    dispatch({ type: 'STOP' });
+  };
+
+  // Function to reset the timer
+  const resetTimer = () => {
+    dispatch({ type: 'RESET' });
+  };
+
+  // Use useEffect to update the timer every second
+  useEffect(() => {
+    let timerInterval;
+
+    if (state.isRunning) {
+      timerInterval = setInterval(() => {
+        dispatch({ type: 'TICK' });
+      }, 1000);
+    } else {
+      clearInterval(timerInterval);
+    }
+
+    return () => {
+      clearInterval(timerInterval);
+    };
+  }, [state.isRunning]);
+
+  return (
+    <div>
+      <h2>Timer</h2>
+      <p>Seconds: {state.seconds}</p>
+      <button onClick={startTimer}>Start</button>
+      <button onClick={stopTimer}>Stop</button>
+      <button onClick={resetTimer}>Reset</button>
+    </div>
+  );
+}
+
+export default Timer;
+```
+
 ## JSX
 
 * combination of Javascript and HTML
@@ -519,18 +815,11 @@ export default App;
   }
   ```
 
-## Components
-
-* plain Javascript function
-* the function must return something
-* the something it must return is JSX
-* the component may have data private to itself, which is called `state`
-* the component may have data to share with other components. this is called `props`
 ## Hosting on Vercel
 
 https://vercel.com/
 
-### Using exteranl URL
+## Using exteranl URL
 
 ```typescript
 function App() {
@@ -548,7 +837,7 @@ function App() {
 }
 ```
 
-### Using local image
+## Using local image
 
 ```typescript
 import React from "react";
@@ -569,7 +858,7 @@ function App() {
 export default App;
 ```
 
-### Using require
+## Using require
 
 Using Webpack with a local image:
 
@@ -585,7 +874,7 @@ Hello World
 </div>
 ```
 
-### Using public image
+## Using public image
 
 Images in the `public` directory.
 
