@@ -20,6 +20,8 @@
 * `d$`: delete to the end of the line
 * `dd`: copy and delete current ine
 * `daw`: delete current word and go to command mode ("delete a word")
+* `d{`: delete to end of paragraph
+* `d{`: delete to beginning of paragraph
 * `di{`: delete the text inside the nearest pair of curly braces
 * `ci{`: change the text inside the nearest pair of curly braces
 * `vi{`: select the text inside the nearest pair of curly braces
