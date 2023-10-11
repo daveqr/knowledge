@@ -1,15 +1,65 @@
 # Linux
 
-## Quick commands
+## Shell
 
-* Determine what process is running on a given port
+* `Piping`: sending the standard output of a command to the standard input of a command.
+	```shell
+	$ ls | grep networks
+	```
+* `Running multiple commands`: three ways to run multiple commands.
+	```shell
+	// 1. end a command with a `;`
+	// executes the second command whether the first
+	// command completes successfully or not
+	$ cd ~; ls
 
+	// 2. use `&&`
+	// Only executes the second command if the first
+	// is successful
+	$ cd ~ && ls
+
+	// 3. use `||`
+	// Execute the first command, and if it fails,
+	// execute the second
+	$ cp apple.png images || mkdir images
+	```
+* `Find`: search for files or directories
+	```shell
+	$ find . -name main.py
+	$ sudo find /etc -name *.conf
+	$ find . -perm 664
+	$ find /etc -type -d -name lvm
+	```
+* `Command redirection`: send the output of a command to a file
+	```shell
+	// overwrite redirect; if the file doesn't exist,
+	// create it. if it does, overwrite it.
+	$ ls > testfiles.txt
+
+	// append
+	$ echo "hello" >> testfiles.txt
+
+	// input
+	$ sort < contacts.txt > sorted_contacts.txt
+	```
+* `!!`: Run the previous command
+  ```shell
+  $ sudo !!
+  ```
+* `!n`: execute the command with history number `n`
+	```shell
+	$ history
+	$ !25
+	```
+* `!-n`: executes the command n entries back in history
+	```shell
+	$!-3
+	```
+* `lsof`: (list open files) determine what process is running on a given port
 	```
 	$ lsof -i :3000
 	```
-	
-* Kill a process
-	
+* `kill`: kill a process
 	```
 	$ kill <PID>
 	```
@@ -18,7 +68,7 @@
 
 ### Directories
 	
-![Linux file system](linux-fs.png)
+![Linux file system](images/linux-fs.png)
 
 
 
