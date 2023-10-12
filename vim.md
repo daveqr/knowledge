@@ -8,6 +8,7 @@
 * `ge`: to the end of the previous word (`g` means go, `e` means end)
 * `$`: to the end of the line
 * `0`: to the beginning of the line
+* `^`: move to the first non-blank character of the line
 * `}`: move forward a paragraph
 * `{`: move back a paragraph
 * `x`: delete the character under the cursor
@@ -18,8 +19,13 @@
 * `db`: delete back to the beginning of the word 
 * `de`: delete forward the the end of the word
 * `d$`: delete to the end of the line
-* `dd`: copy and delete current ine
+* `d0`: delete to the beginning of the line
+* `dd`: copy and delete current line
+* `dG`: delete to end of file
+* `dgg`: delete to beginning of file
 * `daw`: delete current word and go to command mode ("delete a word")
+* `caw`: change a word and go to end of previous word in insert mode
+* `ciw`: change innner word (delete current word and go to insert mode)
 * `d{`: delete to end of paragraph
 * `d{`: delete to beginning of paragraph
 * `di{`: delete the text inside the nearest pair of curly braces
@@ -40,8 +46,13 @@
 * `f [char]`: move to the next given char in line
 * `F [char]`: move to the previous char in line
 * `;` and `,`: repeat last f or F
-* `/yourtext and then: n, N`: search text
-* `r[char]`: replace character below cursor
+* `/` start a forward search
+* `?`: start a backward search
+* `n`: move to the next search result
+* `N`: move to the previous search result
+* `r`: replace character below cursor
+* `R`: enter replace mode to overwrite text
+* `J`: joing the current line with the line below it
 * `yy`: copy current line
 * `yyp`: duplicate current line below (copy and paste) 
 * `yyP`: duplicate current line above (copy and paste) 
@@ -54,19 +65,13 @@
 * `Vj`: visual select down
 * `V}`: visual select forward a paragraph
 * `V{`: visual select backward a paragraph
-
-## Movement
-
-* `hjkl`
-* `h` (left)  `j` (down)       `k` (up)      `l` (right)
-
-```
-       ^
-       k        Hint:  The h key is at the left and moves left.
-  < h     l >          The l key is at the right and moves right.
-       j               The j key looks like a down arrow.
-       v
-```
+* `>>`: indent the current line to the right
+* `<<`: indent the current line to the left
+* `zo` - open a fold under the cursor
+* `zc` - close a fold under the cursor
+* `zM` - close all folds in the current buffer
+* `zR` - open all folds in the current buffer
+* `h` (left) `j` (down, looks like an arrow) `k` (up) `l` (right)
 
 ## Commands
 
@@ -99,45 +104,16 @@ Typing a number before a motion repeats it that many times.
 * `e3`: move the cursor to the end of the third word forward
 * `0`: move to the start of the line
 
-## Navigation
-
-* `w`, `b`: Move the cursor forward by a word or backward by a word.
-* `0`, `$`: Move to the beginning or end of the current line.
-* `gg`: Move to the beginning or end of the file.
-*  `:<line-number>`: Move to a specific line number.
-
-## Text selection
-
-* `v`: Enter visual mode to select text character by character.
-* `V`: Enter visual mode to select whole lines.
-
-## Editing
-i, I: Insert mode before the cursor or at the beginning of the line.
-a, A: Insert mode after the cursor or at the end of the line.
-o, O: Open a new line below or above the current line and enter insert mode.
-x, X: Delete the character under the cursor or the character before the cursor.
-dd: Delete the current line.
-yy: Yank (copy) the current line.
-p, P: Paste the yanked text after or before the cursor position.
-`o`: insert new line below
-`O`: insert new line above
-`%`: go to corresponding parenthesis
-`I`: insert at beginning of line
-
-
 ## Search and replace
 /: Search forward.
 ?: Search backward.
 :s/pattern/replacement/g: Replace all occurrences of "pattern" with "replacement" in the current line.
 :%s/pattern/replacement/g: Replace all occurrences of "pattern" with "replacement" in the entire file.
 
-
-
 ## Marks
 
 ma, 'a: Set a mark named 'a' at the current cursor position.
 'a: Jump to the position of mark 'a'.
-
 
 # Miscellaneous
 

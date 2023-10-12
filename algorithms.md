@@ -1,5 +1,67 @@
 # Algorithms
 
+## Big O Notation
+
+* how code slows as the data grows
+* describes the performance of an algorithm as the amount of data increases
+* machine independent (# of steps to completion)
+
+
+## Examples
+
+`n` is the amount of data we're passinig in.
+
+* `O(1)`: constant time
+  * random access of an element in an array
+  * inserting at the beginning of a linked list
+    ```java
+    public int add(int a, int b) {
+    return a + b;
+    }
+    ```
+* `O(n)`: linear time
+  * looping through elements in an array
+  * searching through a linked list
+    ```java
+    public void printNumbers(int n) {
+        for (int i = 1; i <= n; i++) {
+            System.out.println(i);
+        }
+    }
+    ```
+* `O(log n)`: logarithmic tim
+  * binary search
+    ```java
+    public static int binarySearch(int[] arr, int target) {
+        int left = 0, right = arr.length - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (arr[mid] == target) return mid;
+            if (arr[mid] < target) left = mid + 1;
+            else right = mid - 1;
+        }
+        return -1;
+    }
+    ```
+* `O(n log n)`: quasilinear time
+  * quicksort
+  * mergesort
+  * heapsort
+* `O(n^2)`: quadratic time
+    * insertion sort
+    * selection sort
+    * bubble sort
+    ```java
+    public void quadraticAlgorithm(int[] array) {
+        int n = array.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                // Do something (e.g., print array[i] and array[j])
+            }
+        }
+    }
+    ```
+
 ## Binary tree
 
 Hierarchichal data structure composed of zero, one or two child nodes. 
@@ -35,7 +97,9 @@ A binary search tree is a specific type of binary tree where the left child is "
 * Doesn't have to be balanced
 * Doesn't have to have the center value as the root node.
 * Average time complexity O(log n)
-* Worst case time complexity is O(n)
+* Worst case time complexity is O(n), when the tree is unbalanced (ie each node only has one child)
+* The left-most child should be the least value, and the right-most child should be the greatest value
+* Nodes are arranged this way for quick lookup
   
 ```mermaid
 graph TD;
