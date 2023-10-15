@@ -90,7 +90,7 @@ public static int maxDepth(TreeNode root) {
 }
 ```
 
-## Binary search tree
+### Binary search tree
 
 A binary search tree is a specific type of binary tree where the left child is "smaller" than the parent, and the right child is "larger" than the parent, effectively reducing the problem size by half.
 
@@ -109,4 +109,56 @@ graph TD;
     B-->E(8);
     C-->F(12);
     C-->G(18)
+```
+
+## Binary Tree BFS
+
+A Breadth-First Search (BFS) algorithm is widely used for traversing graphs and trees, including binary trees. The BFS algorithm is typically implemented using a queue data structure to ensure that nodes at each level are processed before moving to the next level.
+
+1. Initialize a queue data structure (often a queue or a deque) to store nodes to be processed.
+2. Enqueue the root node (or the starting node) into the queue to initiate the traversal.
+3. Start a loop that continues until the queue is empty.
+4. In each iteration of the loop:
+    1. Dequeue the node at the front of the queue.
+    2. Process the node (e.g., record its value, perform some operation, or check for specific conditions).
+5. Enqueue all unvisited neighbor nodes of the current node into the queue. This step ensures that the traversal moves to the next level in a graph or to the children of a node in a tree.
+6. Repeat the loop until the queue is empty. This ensures that all nodes at each level are visited before moving to the next level.
+7. The BFS traversal is complete when all nodes have been processed.
+
+**Finding the average of each level example**
+```java
+    public List<Double> averageOfLevels(final TreeNode root) {
+        final List<Double> averages = new ArrayList<>();
+
+        if (root == null) {
+            return averages;
+        }
+
+        final Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            final int levelSize = queue.size();
+            double levelSum = 0.0;
+
+            for (int i = 0; i < levelSize; i++) {
+                final TreeNode node = queue.poll();
+                if (node != null) {
+                    levelSum += node.val;
+
+                    if (node.left != null) {
+                        queue.offer(node.left);
+                    }
+
+                    if (node.right != null) {
+                        queue.offer(node.right);
+                    }
+                }
+            }
+
+            averages.add(levelSum / levelSize);
+        }
+
+        return averages;
+    }
 ```

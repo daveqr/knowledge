@@ -6,7 +6,7 @@ Atomicity, Consistency, Isolation, and Durability. It is a set of properties tha
 
 * `Atomicity`: This property ensures that a database transaction is treated as a single, indivisible unit. Either all the changes made by the transaction are committed to the database, or none of them are. If any part of the transaction fails, all changes are rolled back, and the database remains in a consistent state.
 
-* `Consistency`: The consistency property ensures that a transaction brings the database from one consistent state to another. The database must satisfy a set of integrity constraints or rules both before and after the transaction. If a transaction violates any constraints, it is rolled back, and the database remains unchanged.
+* `Consistency`: The consistency property ensures that a transaction brings the database from one consistent state to another. The database must satisfy a set of integrity constraints or rules both before and after the transaction. If a transaction violates any constraints, it is rolled back, and the database remains unchanged. Constraint examples include unique name or id or name must be > 2 chars.
 
 * `Isolation`: Isolation ensures that concurrent transactions do not interfere with each other. Each transaction should appear as if it is executed in isolation, without any knowledge of other concurrent transactions. Isolation prevents issues such as dirty reads, non-repeatable reads, and phantom reads that can occur when multiple transactions access the same data simultaneously.
 

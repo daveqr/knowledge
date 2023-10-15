@@ -17,3 +17,5 @@ Clearing and rebuilding internal caches can resolve issues caused by corrupted c
 ```
 File -> Invalidate Caches -> Invalidate and Restart
 ```
+
+## Inject language

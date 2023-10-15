@@ -23,9 +23,9 @@
 | **Recent Files and Locations**               |                               |
 | Recent Files                                 | Cmd + E                       |
 | Recent Locations                             | Shift + Cmd + E               |
-| Switch tabs forward                             | Ctrl + tab              |
-| Switch tabs backwars                             | Ctrl + shift + tab              |
-| **Editing**                                  |                               |
+| Switch tabs forward | Ctrl + tab |
+| Select-In |  Alt-F1 |
+| **Editing** | |
 | Comment                                      | Cmd + /                       |
 | Delete Line                                  | Cmd + Y                       |
 | Delete Line to Clipboard                     | Opt + X                       |
