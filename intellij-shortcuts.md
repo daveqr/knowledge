@@ -29,6 +29,7 @@
 | Comment                                      | Cmd + /                       |
 | Delete Line                                  | Cmd + Y                       |
 | Delete Line to Clipboard                     | Opt + X                       |
+| Safe Delete                                  | Cmd + Del                       |
 | Duplicate selected line                      | Cmd + D                       
 | Select vertically | Alt while clicke and dragging the cursor
 | Safe Delete                     | Cmd + Del                       |
