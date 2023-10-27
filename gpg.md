@@ -12,3 +12,7 @@ git config --global user.signingkey YOUR_GPG_KEY_ID
 
 enable signing by default
 git config --global commit.gpgsign true
+
+to revoke
+gpg --gen-revoke "Your Name" > revocation-certificate.asc
+gs
