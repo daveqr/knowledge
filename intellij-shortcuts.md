@@ -14,12 +14,14 @@
 | Format Whole File                            | Shift + Opt + Cmd + L         |
 | Reformat a module or directory               | Opt + Cmd + L                 |
 | **Code Navigation**                          |                               |
+| Go to editor	| Esc|
 | Go to Definition                             | Cmd + B                       |
 | Navigate to Class                            | Cmd + N                       |
 | Navigate to File                             | Shift + Cmd + N               |
-| Find members in current file                 | Cmd + F12                     |
+| Find members in current file (class structure)                 | Cmd + F12                     |
 | Find members in current project              | Cmd + Alt + Shift + N         |
 | Jump up to overriden definition              | Cmd + U         |
+| Jump to previous method | Alt + up or Alt + down |
 | **Recent Files and Locations**               |                               |
 | Recent Files                                 | Cmd + E                       |
 | Recent Locations                             | Shift + Cmd + E               |
@@ -34,6 +36,7 @@
 | Select vertically | Alt while clicke and dragging the cursor
 | Safe Delete                     | Cmd + Del                       |
 | Move line up or down                     | Shift + Cmd + arrow                       |
+| Select next occurrenct |  highlight characters, then Alt + j
 | **Refactoring**                              |                               |
 | Refactor/Rename                              | Shift + F6                    |
 | Introduce variable                              | Alt + Cmd + v                    |
@@ -61,10 +64,13 @@
 | Find in all files                                 | Ctrl + Shift + F               |
 | **Navigation and File Management**           |                               |
 | Open File                                   | Cmd + O                       |
-| Close File                                  | Cmd + W                       |
+| Close File                                  | Cmd + W (Mac) or Cmd + F4 (Linux)                      |
 | Save                                        | Cmd + S                       |
 | Save All                                    | Cmd + Option + S              |
 | Switch Between Tabs                         | Cmd + Tab                     |
+| Jump to implementation | Cmd + Alt + B 
+| Jump to super method | Cmd + U
+
 | **Code Inspection and Analysis**             |                               |
 | Inspect Code                                | Option + Cmd + I              |
 | Run Code Analysis                          | Option + Cmd + L              |
